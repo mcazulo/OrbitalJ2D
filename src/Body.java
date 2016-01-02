@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Marcos Cazulo
+ * 
+ */
+
 import java.util.Random;
 
 public class Body {
@@ -7,6 +13,7 @@ public class Body {
 	private Vector pos;
 	private Vector vel;
 	private Vector acc;
+	private int radius;
 	
 	public Body() {
 		Random rand = new Random();
@@ -14,6 +21,7 @@ public class Body {
 		pos = new Vector(rand.nextInt(500), rand.nextInt(500));
 		vel = new Vector(0,0);
 		acc = new Vector(0,0);
+		radius = 10;
 	}
 	
 	public Body(Vector initPosition, Vector initVel, double mass){
@@ -21,6 +29,7 @@ public class Body {
 		pos = initPosition;
 		vel = initVel;
 		acc = new Vector(0,0);
+		radius = 10;
 	}
 	
 	public void update(double timeStep) {
@@ -68,5 +77,13 @@ public class Body {
 	
 	public int getId(){
 		return id;
+	}
+	
+	public int getRadius(){
+		return radius;
+	}
+	
+	public void setRadius(int radius){
+		this.radius = radius;
 	}
 }

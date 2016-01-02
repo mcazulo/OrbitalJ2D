@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author Marcos Cazulo
+ *
+ */
 public class Vector {
 	private double x;
 	private double y;

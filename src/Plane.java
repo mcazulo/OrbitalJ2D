@@ -1,9 +1,14 @@
+/**
+ * 
+ * @author Marcos Cazulo
+ * 
+ */
+
 import java.util.ArrayList;
 
 public class Plane {
 	
 	private ArrayList<Body> bodies;
-	
 	//final double gravityConstant = 6.673e-11;
 	private final double gravityConstant = .032;
 	private static double timeStep = .25;
@@ -11,6 +16,7 @@ public class Plane {
 	
 	public Plane(){
 		bodyId = 0; // use this value as the body identifier
+		bodies = new ArrayList<Body>();
 	}
 	
 	public void update(){
@@ -41,8 +47,32 @@ public class Plane {
 		}
 	}
 	
+	/**
+	 * for now I am assuming we will work with circles and so the collision detection
+	 * is that of circles only and expect the bodies to be circles
+	 */
+	public void detectCollisions(){
+		for(int i = 0; i < bodies.size(); i++){
+			Body currentBody = bodies.get(i);
+			for(int j = i; j < bodies.size();i++){
+				Body nextBody = bodies.get(j);
+				double distance = Vector.distance(currentBody.getPosition(), nextBody.getPosition());
+				if (distance < currentBody.getRadius() + nextBody.getRadius()) {
+					// collision detected
+					// calculate the new velocities after the circle collision
+					calculateCircleCollision(currentBody, nextBody);
+				}
+			}
+		}
+	}
+	
+	public void calculateCircleCollision(Body bodyA, Body bodyB){
+		
+	}
+	
 	public void addBody(Body body){
 		body.setId(bodyId);
+		bodyId++;
 		bodies.add(body);
 	}
 	
